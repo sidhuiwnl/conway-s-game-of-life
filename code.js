@@ -1,7 +1,8 @@
 let rows = 30;
 let cols = 30;
 
-let grid = new Array(30);
+let grid = Array.from(Array(rows), () => Array(cols).fill(0));
+
 
 
 
@@ -41,6 +42,20 @@ function cellClickHandler() {
         grid[row][col] = 1;
     }
     
+}
+
+
+function updateView(){
+    for(let i =0; i < rows; i++){
+        for(let j = 0; j < cols; j++){
+            let cell = document.getElementById(i + "_" + j)
+            if(grid[i][j] === 0){
+                cell.setAttribute("class","dead");
+            }else{
+                cell.setAttribute("class","live");
+            }
+        }
+    }
 }
 
 
