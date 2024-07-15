@@ -1,0 +1,25 @@
+body {
+    padding: 20px;
+    
+}
+
+#gridContainer {
+    padding-bottom: 10px;
+}
+
+table {
+    background-color: #ffff;
+    border-spacing: 0;
+}
+
+td {
+    border: 1px solid #000;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+#grid-container{
+    border: #0000;
+
+}
