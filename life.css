@@ -23,3 +23,27 @@ td {
     border: #0000;
 
 }
+
+span {
+    color: #222;
+}
+
+#start,
+#clear,
+#random {
+    padding: .75em;
+    border-radius: 5px;
+    border: none;    
+    background: linear-gradient(
+        to bottom right,
+        #C5DEC6, #05040109);
+}
+
+td.dead {
+    background-color: transparent;
+}
+
+td.live {
+    background-color: #0e0d0d;
+    border-radius: 10px;
+}
