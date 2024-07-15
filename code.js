@@ -1,8 +1,10 @@
 let rows = 30;
 let cols = 30;
 
-let grid = Array.from(Array(rows), () => Array(cols).fill(0));
+let playing = false;
+let grid = new Array(rows);
 
+let nextGrid = new Array(rows);
 
 
 
@@ -25,13 +27,13 @@ function createTable(){
 }
 
 createTable();
-
+updateView();
 
 
 function cellClickHandler() {
     var rowcol = this.id.split("_");
-    var row = rowcol[0];
-    var col = rowcol[1];
+    var row = parseInt(rowcol[0]);
+    var col = parseInt(rowcol[1]);
     
     var classes = this.getAttribute("class");
     if(classes.indexOf("live") > -1) {
@@ -57,5 +59,42 @@ function updateView(){
         }
     }
 }
+
+function applyingRules(col,row){
+    let neighbourCount = countLiveNeighbors(col,row);
+    if(grid[row][col] === 1){
+        if(neighbourCount < 2){
+            nextGrid[row][col] = 0;
+        }else if(neighbourCount === 2 && neighbourCount === 3){
+            nextGrid[row][col] = 1;
+        }else if(neighbourCount > 3){
+            nextGrid[row][col] = 0;
+        }
+    }else if (grid[row][col] == 0) {
+        if (numNeighbors == 3) {
+            nextGrid[row][col] = 1;
+        }
+    }
+}
+
+
+function countLiveNeighbors(col,row){
+    let neighbor = 0;
+    for(let i = -1; i < 1; i++){
+        for(let j = -1; j < 1; j++){
+            if(i === 0 && j===0) continue
+            let newRow = row+1;
+            let newCol = col+1;
+            if(newRow >=0 && newRow < rows && newCol >= 0 && newCol < cols){
+                neighbor += grid[newRow][newCol];
+            }
+        }
+    }
+
+    return neighbor
+}
+
+
+
 
 
