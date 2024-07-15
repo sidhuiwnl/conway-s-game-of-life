@@ -18,7 +18,7 @@ function createTable(){
             let cell = document.createElement('td');
             cell.setAttribute("id", i + "_" + j);
             cell.setAttribute('class',"dead");
-            cell.onclick = cellClickHandler;
+            cell.onclick = cellClick;
             
             tr.appendChild(cell);
         }
@@ -30,7 +30,7 @@ function createTable(){
 
 
 
-function cellClickHandler() {
+function cellClick() {
     var rowcol = this.id.split("_");
     var row = parseInt(rowcol[0]);
     var col = parseInt(rowcol[1]);
@@ -60,7 +60,7 @@ function updateView(){
     }
 }
 
-function applyingRules(row,col){
+function Rules(row,col){
     let neighbourCount = countLiveNeighbors(col,row);
     if(grid[row][col] === 1){
         if(neighbourCount < 2){
@@ -97,23 +97,23 @@ function countLiveNeighbors(col,row){
 
 function setUpControlButtons(){
     let startButton = document.getElementById('start');
-    startButton.onclick = startButtonHandler;
+    startButton.onclick = startButtonHandle;
 
     let clearButton = document.getElementById('clear');
-    clearButton.onclick = clearButtonHandler;
+    clearButton.onclick = clearButtonHandle;
     
-    // button to set random initial state
+    
     let randomButton = document.getElementById("random");
-    randomButton.onclick = randomButtonHandler;
+    randomButton.onclick = randomButtonHandle;
 }
 
 
-function startButtonHandler() {
+function startButtonHandle() {
     if (playing) {
         console.log("Pause the game");
         playing = false;
         this.innerHTML = "Continue";
-        clearTimeout(timer); // Stop the periodic updates
+        clearTimeout(timer); 
     } else {
         console.log("Continue the game");
         playing = true;
@@ -123,7 +123,7 @@ function startButtonHandler() {
 }
 
 
-function clearButtonHandler(){
+function clearButtonHandle(){
     let startButton = document.getElementById('start');
 
     playing = false;
@@ -149,9 +149,9 @@ function clearButtonHandler(){
 }
 
 
-function randomButtonHandler() {
+function randomButtonHandle() {
     if (playing) return;
-    clearButtonHandler();
+    clearButtonHandle();
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             var isLive = Math.round(Math.random());
@@ -201,7 +201,7 @@ function play() {
 function computeNextGen() {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
-            applyingRules(i, j);
+            Rules(i, j);
         }
     }
     
