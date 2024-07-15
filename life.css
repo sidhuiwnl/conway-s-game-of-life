@@ -19,10 +19,7 @@ td {
     height: 10px;
 }
 
-#grid-container{
-    border: #0000;
 
-}
 
 span {
     color: #222;
@@ -34,9 +31,7 @@ span {
     padding: .75em;
     border-radius: 5px;
     border: none;    
-    background: linear-gradient(
-        to bottom right,
-        #C5DEC6, #05040109);
+   
 }
 
 td.dead {
